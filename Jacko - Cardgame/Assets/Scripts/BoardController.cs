@@ -108,18 +108,19 @@ public class BoardController : MonoBehaviour
             }
             else
             {
-                _sortingVal += 0.01f;
+                _sortingVal += 0.05f;
             }
             _playedCardPile.Add(card);
-            card.transform.parent = CardZone.transform;
+            foreach (Transform t in CardZone.GetComponentInChildren<Transform>())
+            {
+                if (t.name.ToLower().Contains("cardholder"))
+                {
+                    card.transform.parent = t;
+                    break;
+                }
+            }
             card.transform.GetComponent<Animator>().enabled = false;
             StartCoroutine(MoveCard(card));
-            //if (card.transform.position != CardZone.transform.position)
-            //{
-            //    print("Moving card from Hand to PlayedCardPile..");
-            //    //card.transform.Translate(CardZone.transform.position);
-            //    card.transform.position = Vector3.MoveTowards(card.transform.position, CardZone.transform.position, step);
-            //}
         }
         catch (System.Exception)
         {
@@ -130,11 +131,11 @@ public class BoardController : MonoBehaviour
     float step = 0, _sortingVal;
     IEnumerator MoveCard(GameObject card)
     {
-        _sortingVal = 0;
+        //_sortingVal = 0;
+        //print("Moving card from Hand to PlayedCardPile..");
         while(Vector3.Distance(card.transform.position, CardZone.transform.position) > 0.1f)
         {
             step += 0.1f * Time.deltaTime;
-            print("Moving card from Hand to PlayedCardPile..");
             card.transform.position = Vector3.MoveTowards(card.transform.position, CardZone.transform.position, step);
             
             yield return null;

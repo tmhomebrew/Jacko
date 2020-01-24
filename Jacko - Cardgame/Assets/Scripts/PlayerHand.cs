@@ -94,19 +94,19 @@ public class PlayerHand : MonoBehaviour
             }
             else
             {
-                print("Previous selected card is.: " + _preSelectedCard.transform.GetComponent<CardEditor>().CardName);
+                //print("Previous selected card is.: " + _preSelectedCard.transform.GetComponent<CardEditor>().CardName);
                 DeSelectedCard();
                 _preSelectedCard = cardSelected;
-                print("New Previous Card selected is.: " + _preSelectedCard.transform.GetComponent<CardEditor>().CardName);
+                //print("New Previous Card selected is.: " + _preSelectedCard.transform.GetComponent<CardEditor>().CardName);
                 _preSelectedCard.transform.GetComponent<CardEditor>().MyAnim.SetBool("IsSelected", true);
             }
         }
         else
         {
-            print("Card selected is.: " + cardSelected.transform.GetComponent<CardEditor>().CardName);
+            //print("Card selected is.: " + cardSelected.transform.GetComponent<CardEditor>().CardName);
             _preSelectedCard = cardSelected;
             _preSelectedCard.transform.GetComponent<CardEditor>().MyAnim.SetBool("IsSelected", true);
-            print("A card has been selected.");
+            //print("A card has been selected.");
         }
     }
 
@@ -118,25 +118,23 @@ public class PlayerHand : MonoBehaviour
 
     public void HoverOverCard(GameObject card)
     {
-        print(card.transform.name + " is hovering.!");
+        //print(card.transform.name + " is hovering.!");
         card.transform.GetComponent<CardEditor>().MyAnim.SetBool("MouseOver", true);
     }
 
     public void HoverOverCancel(GameObject card)
     {
-        print(card.transform.name + " is lowering.!");
+        //print(card.transform.name + " is lowering.!");
         card.transform.GetComponent<CardEditor>().MyAnim.SetBool("MouseOver", false);
     }
 
     public void PlayCard(GameObject card)
     {
-        print(card.transform.GetComponent<CardEditor>().CardName + " has been played....");
+        //print(card.transform.GetComponent<CardEditor>().CardName + " has been played....");
         card.transform.GetComponent<CardEditor>().MyAnim.SetBool("IsPlayed", true);
         
-
         CardsInHand.Remove(card);
         _boardZone.GetComponent<BoardController>().CardFromHandToPlayedCardsPile(card);
         SortHand();
-        //CardHolder(); //<--- Update Current Hand list, to show a new hand..
     }
 }

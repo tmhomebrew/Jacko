@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - CardZone
+  - DeckZone
+  - DiscardZone
+  - PlayerZone
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - CardLayer
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: BackGround
+    uniqueID: 204606357
+    locked: 0
+  - name: ForeGround
+    uniqueID: 606569189
+    locked: 0
+  - name: CardBG
+    uniqueID: 1245937763
+    locked: 0
+  - name: CardFG
+    uniqueID: 4066113953
+    locked: 0
+  - name: CardInfo
+    uniqueID: 321528085
+    locked: 0
+  - name: FullCard
+    uniqueID: 2772309777
+    locked: 0

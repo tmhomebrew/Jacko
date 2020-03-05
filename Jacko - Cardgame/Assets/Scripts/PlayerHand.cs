@@ -9,7 +9,11 @@ public class PlayerHand : MonoBehaviour
     #region Field
     [SerializeField]
     List<GameObject> _cardsInHand;
+    List<GameObject> tempCardsToHand = new List<GameObject>();
     GameObject _cardOnboardPlace;
+    [SerializeField]
+    GameObject _preSelectedCard;
+    private float _cardDistance = 0.5f;
 
     //References
     [SerializeField]
@@ -48,26 +52,46 @@ public class PlayerHand : MonoBehaviour
     public void AddCardToPlayer(GameObject cardToAdd)
     {
         CardsInHand.Add(cardToAdd);
-        if (CardsInHand.Count == 26)
-        {
-            SortHand();
-        }
+        SortHand();
     }
-
-    float _cardDistance = 0.5f;
 
     public void CardHolder()
     {
-        float i = 0f;
-        CardOnboardPlace.transform.position = new Vector3( -CardsInHand.Count / 4, transform.position.y, transform.position.z);
+        float i = (_cardDistance / 2f);
+        CardOnboardPlace.transform.position = new Vector3(-CardsInHand.Count * i, transform.position.y, transform.position.z);
+        
+        #region Old Version of holding Cards in hand..
+        //foreach (GameObject card in CardsInHand)
+        //{
+        //    card.transform.position = new Vector3(
+        //        CardOnboardPlace.transform.position.x + i,
+        //        CardOnboardPlace.transform.position.y, 
+        //        -2 + (-i/4));
+        //    i = _cardDistance + i;
+        //}
+        #endregion
+        #region New Version - Better placement for last cards..
         foreach (GameObject card in CardsInHand)
         {
-            card.transform.position = new Vector3(CardOnboardPlace.transform.position.x + i, CardOnboardPlace.transform.position.y, -i/4);
-            i = _cardDistance + i;
+            if (CardsInHand.Count > 1)
+            {
+                card.transform.position = new Vector3(
+                    CardOnboardPlace.transform.position.x + i,
+                    CardOnboardPlace.transform.position.y,
+                    -2 + (-i / 4));
+                i += _cardDistance;
+            }
+            else
+            {
+                card.transform.position = new Vector3(
+                    0f,
+                    CardOnboardPlace.transform.position.y,
+                    -2 + (-i / 4));
+            }
         }
+        #endregion
     }
 
-    List<GameObject> tempCardsToHand = new List<GameObject>();
     void SortHand()
     {
         tempCardsToHand = CardsInHand;
@@ -79,8 +103,6 @@ public class PlayerHand : MonoBehaviour
         CardHolder();
     }
 
-    [SerializeField]
-    GameObject _preSelectedCard;
     public void SelectCard(GameObject cardSelected)
     {
         if (_preSelectedCard != null)
@@ -89,7 +111,7 @@ public class PlayerHand : MonoBehaviour
             {
                 //if (IsPlayersTurn == true)
                 {
-                    PlayCard(cardSelected); //Plays the card double clicked..
+                    PlayCard(cardSelected); //Plays the card, if the card is already selected.. "Double Click"..
                 }
             }
             else
@@ -110,7 +132,7 @@ public class PlayerHand : MonoBehaviour
         }
     }
 
-    public void DeSelectedCard()
+    private void DeSelectedCard()
     {
         _preSelectedCard.transform.GetComponent<CardEditor>().MyAnim.SetBool("IsSelected", false);
         _preSelectedCard = null;

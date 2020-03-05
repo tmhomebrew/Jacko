@@ -16,7 +16,7 @@ public class OnMouseOverSample : MonoBehaviour
         _myPlayerHand = GetComponentInParent<PlayerHand>();
     }
 
-    void OnMouseDown()
+    private void OnMouseDown()
     {
         try
         {

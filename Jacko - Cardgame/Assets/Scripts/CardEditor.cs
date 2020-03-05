@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CardEditor : MonoBehaviour
 {
+    #region Fields
     public Sprite _backgroundImage;
     public Sprite _foregroundImage;
     public Sprite _mainImage;
@@ -18,9 +19,13 @@ public class CardEditor : MonoBehaviour
     //Extern References
     CardTemplate myCard;
 
+    #endregion
+    #region Properties
     public CardTemplate MyCard { get => myCard; set => myCard = value; }
     public string CardName { get => cardName; set => cardName = value; }
     public Animator MyAnim { get => myAnim; set => myAnim = value; }
+
+    #endregion
 
     void SetReferences()
     {

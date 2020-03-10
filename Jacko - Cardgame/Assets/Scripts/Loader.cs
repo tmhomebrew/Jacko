@@ -9,7 +9,7 @@ public static class Loader
     public enum Scene
     {
         LoadingScreen,
-        TilelScreen,
+        TitelScreen,
         GameScreen
     }
 

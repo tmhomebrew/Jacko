@@ -10,6 +10,7 @@ public class MainMenuHandler : MonoBehaviour
     public GameObject _playerLoggedGO, _menuGO, _backGroundGO;
     public GameObject _signIn, _signOut, _playJacko;
     string _textForLogin = "Logged as.: ";
+    bool _IsLoggedIn = false;
 
     #endregion
 
@@ -17,6 +18,10 @@ public class MainMenuHandler : MonoBehaviour
     void Start()
     {
         SetupReferences();
+        if (_IsLoggedIn == true) //<--- Tilpas dette til google_ID, hvis allerede logget in, så forbliv logget ind.
+        {
+            SignIn();
+        }
     }
 
     void SetupReferences()
@@ -59,17 +64,12 @@ public class MainMenuHandler : MonoBehaviour
         SetBools(true);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void SetLoggedInText(string name)
     {
         if (name != null)
         {
             _playerLoggedGO.GetComponentInChildren<Text>().text = _textForLogin + name;
+            _IsLoggedIn = true;
         }
     }
     void SetLoggedInText()
@@ -87,6 +87,7 @@ public class MainMenuHandler : MonoBehaviour
     {
         SetBools(true);
         SetLoggedInText();
+        _IsLoggedIn = false;
     }
 
     void SetBools(bool isActive)

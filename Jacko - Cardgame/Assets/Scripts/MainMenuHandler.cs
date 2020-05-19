@@ -9,6 +9,8 @@ public class MainMenuHandler : MonoBehaviour
     #region Fields
     public GameObject _playerLoggedGO, _menuGO, _backGroundGO;
     public GameObject _signIn, _signOut, _playJacko;
+    [SerializeField]
+    public GameObject _playerPrefab;
     string _textForLogin = "Logged as.: ";
     bool _IsLoggedIn = false;
 
@@ -80,7 +82,7 @@ public class MainMenuHandler : MonoBehaviour
     public void SignIn()
     {
         SetBools(false);
-        SetLoggedInText("Master Blaster"); //<-- Google ID
+        SetLoggedInText(GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>().PlayerName); //<-- Google ID
     }
 
     public void SignOut()

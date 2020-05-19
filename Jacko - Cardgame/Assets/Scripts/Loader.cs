@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public static class Loader
@@ -14,6 +15,7 @@ public static class Loader
     }
 
     private static Action onLoaderCallBack;
+
 
     public static void Load(Scene scene)
     {

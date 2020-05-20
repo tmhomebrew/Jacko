@@ -5,10 +5,16 @@ using UnityEngine;
 
 public class PlayerScript : SingletonScript<PlayerScript>
 { 
+    //Generel Information
     string _playerName;
+    
+    //Test
     public int _inGamePointsCurrent;
-    bool _isMyTurn;
     private int testCounter;
+
+    //In-Game Variables
+    bool _isMyTurn;
+
 
     public int TestCounter
     {
@@ -23,8 +29,21 @@ public class PlayerScript : SingletonScript<PlayerScript>
     // Start is called before the first frame update
     void Start()
     {
+        SetupVariables();
+        PlayerName = "NotGoogleSignIn - Thomas";
+    }
+
+    void SetupVariables()
+    {
+        _isMyTurn = false;
+
+
+        //For Test only
+#if UNITY_EDITOR
         TestCounter = 0;
-        PlayerName = "Thomas";
+#else
+
+#endif
     }
 
     // Update is called once per frame

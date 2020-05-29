@@ -21,9 +21,9 @@ public class CardEditor : MonoBehaviour
 
     #endregion
     #region Properties
-    public CardTemplate MyCard { get => myCard; set => myCard = value; }
-    public string CardName { get => cardName; set => cardName = value; }
-    public Animator MyAnim { get => myAnim; set => myAnim = value; }
+    public CardTemplate MyCard { get => myCard; private set => myCard = value; }
+    public string CardName { get => cardName; private set => cardName = value; }
+    public Animator MyAnim { get => myAnim; private set => myAnim = value; }
 
     #endregion
 

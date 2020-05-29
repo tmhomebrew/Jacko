@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class PlayerScript : SingletonScript<PlayerScript>
+public class PlayerScript : MonoBehaviour /*SingletonScript<PlayerScript>*/
 { 
     //Generel Information
     string _playerName;

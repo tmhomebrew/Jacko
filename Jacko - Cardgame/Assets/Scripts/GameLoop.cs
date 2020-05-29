@@ -55,18 +55,48 @@ public class GameLoop : MonoBehaviour
       * Choose Starting player (Player with most spades, starts)
       */
 
-        /* GAMELOOP
-         * Show players available cards - Only 'one' type is available at a time (Spades, diamonds, clubs, hearts)
-         * Show available cards, based on Cards in the "cardzone" and total value of cards in "Cardzone" <= 21..
-         * --> If any available, Player select card/Play card (from available cards in "PlayerZone")
-         * --> If non is available, player turn is ended, other players turn..
-         * -----> If other player can't play more cards, end total.
-         */
+      /* GAMELOOP
+       * Show players available cards - Only 'one' type is available at a time (Spades, diamonds, clubs, hearts)
+       * Show available cards, based on Cards in the "cardzone" and total value of cards in "Cardzone" <= 21..
+       * --> If any available, Player select card/Play card (from available cards in "PlayerZone")
+       * --> If non is available, player turn is ended, other players turn..
+       * -----> If other player can't play more cards, end total.
+       */
     }
 
     public void StartGame()
     {
         
+    }
+
+    /// <summary>
+    /// When players have joined the board, assign them to their place.
+    /// Call Start game.?
+    /// </summary>
+    public void AssignPlayers()
+    {
+        if (_playersInGame.Count == 2)
+        {
+            _playersInGame[0].GetComponent<PlayerHand>().CardZone = playerZoneOne;
+            _playersInGame[1].GetComponent<PlayerHand>().CardZone = playerZoneTwo;
+
+            //bool isAssigned = false;
+            //foreach (GameObject p in _playersInGame)
+            //{
+            //    if (!isAssigned)
+            //    {
+
+            //        p.GetComponent<PlayerHand>().CardZone = playerZoneOne;
+            //        isAssigned = true;
+            //        continue;
+            //    }
+            //    else
+            //    {
+            //        p.GetComponent<PlayerHand>().CardZone = playerZoneTwo;
+            //        break;
+            //    }
+            //}
+        }
     }
 
     public void OnPlayerJoin(GameObject player)
@@ -81,6 +111,7 @@ public class GameLoop : MonoBehaviour
             }
         }
     }
+
     //private void IsPlayersConnected()
     //{
     //    StartCoroutine(TryPlayersConnected());
@@ -110,4 +141,17 @@ public class GameLoop : MonoBehaviour
     //        print("Start game..");
     //    }
     //}
+}
+
+public enum GameStatus
+{
+    IsRunning,
+    TryingToConnect,
+    ShowResult,
+    EndGame,
+}
+
+class GameConditions
+{
+
 }

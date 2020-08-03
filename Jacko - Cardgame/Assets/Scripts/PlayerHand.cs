@@ -25,6 +25,7 @@ public class PlayerHand : MonoBehaviour
     public List<GameObject> CardsInHand { get => _cardsInHand; set => _cardsInHand = value; }
     public GameObject CardOnboardPlace { get => _cardOnboardPlace; set => _cardOnboardPlace = value; }
     public GameObject CardZone { get => _cardZone; set => _cardZone = value; }
+    public GameObject PreSelectedCard { get => _preSelectedCard; private set => _preSelectedCard = value; }
 
     #endregion
 
@@ -105,9 +106,9 @@ public class PlayerHand : MonoBehaviour
 
     public void SelectCard(GameObject cardSelected)
     {
-        if (_preSelectedCard != null)
+        if (PreSelectedCard != null)
         {
-            if (_preSelectedCard == cardSelected)
+            if (PreSelectedCard == cardSelected)
             {
                 //if (IsPlayersTurn == true)
                 {
@@ -118,24 +119,25 @@ public class PlayerHand : MonoBehaviour
             {
                 //print("Previous selected card is.: " + _preSelectedCard.transform.GetComponent<CardEditor>().CardName);
                 DeSelectedCard();
-                _preSelectedCard = cardSelected;
+                PreSelectedCard = cardSelected;
                 //print("New Previous Card selected is.: " + _preSelectedCard.transform.GetComponent<CardEditor>().CardName);
-                _preSelectedCard.transform.GetComponent<CardEditor>().MyAnim.SetBool("IsSelected", true);
+                PreSelectedCard.transform.GetComponent<CardEditor>().MyAnim.SetBool("IsSelected", true);
             }
         }
         else
         {
             //print("Card selected is.: " + cardSelected.transform.GetComponent<CardEditor>().CardName);
-            _preSelectedCard = cardSelected;
-            _preSelectedCard.transform.GetComponent<CardEditor>().MyAnim.SetBool("IsSelected", true);
+            PreSelectedCard = cardSelected;
+            PreSelectedCard.transform.GetComponent<CardEditor>().MyAnim.SetBool("IsSelected", true);
             //print("A card has been selected.");
         }
     }
 
     private void DeSelectedCard()
     {
-        _preSelectedCard.transform.GetComponent<CardEditor>().MyAnim.SetBool("IsSelected", false);
-        _preSelectedCard = null;
+        PreSelectedCard.transform.GetComponent<CardEditor>().MyAnim.SetBool("IsSelected", false);
+        //_preSelectedCard.transform.position += new Vector3(0, -0.6f);
+        PreSelectedCard = null;
     }
 
     public void HoverOverCard(GameObject card)

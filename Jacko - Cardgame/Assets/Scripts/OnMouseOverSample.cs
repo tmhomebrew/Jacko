@@ -13,7 +13,10 @@ public class OnMouseOverSample : MonoBehaviour
 
     void SetupReferences()
     {
-        _myPlayerHand = GetComponentInParent<PlayerHand>();
+        if (transform.name.ToLower().Contains("card"))
+        {
+            _myPlayerHand = GetComponentInParent<PlayerHand>();
+        }
     }
 
     private void OnMouseDown()

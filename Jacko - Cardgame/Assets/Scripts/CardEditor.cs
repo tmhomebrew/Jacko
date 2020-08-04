@@ -13,6 +13,7 @@ public class CardEditor : MonoBehaviour
     [SerializeField]
     string cardName;
     Color _cardRed = Color.red;
+    bool isDealt;
 
     Animator myAnim;
 
@@ -24,12 +25,14 @@ public class CardEditor : MonoBehaviour
     public CardTemplate MyCard { get => myCard; private set => myCard = value; }
     public string CardName { get => cardName; private set => cardName = value; }
     public Animator MyAnim { get => myAnim; private set => myAnim = value; }
+    public bool IsDealt { get => isDealt; set => isDealt = value; }
 
     #endregion
 
     void SetReferences()
     {
         MyAnim = GetComponent<Animator>();
+        IsDealt = false;
 
         foreach (Transform go in GetComponentsInChildren<Transform>())
         {

@@ -122,7 +122,6 @@ public class BoardController : MonoBehaviour
     {
         try
         {
-            
             _playedCardPile.Add(card);
             foreach (Transform t in CardZone.GetComponentInChildren<Transform>())
             {

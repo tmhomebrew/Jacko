@@ -74,6 +74,7 @@ public class DeckHandler : MonoBehaviour
         for (int i = 0; i < 26; i++)
         {
             temp.GetComponent<PlayerHand>().AddCardToPlayer(DeckOfCards[i]);
+            DeckOfCards[i].GetComponent<CardEditor>().IsDealt = true;
 
             DeckOfCards[i].transform.rotation = Quaternion.Euler(0, 0, 0);
             DeckOfCards[i].transform.SetParent(temp.GetComponent<PlayerHand>().CardOnboardPlace.transform);

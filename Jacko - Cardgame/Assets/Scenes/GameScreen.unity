@@ -777,6 +777,48 @@ MonoBehaviour:
   cardPrefab: {fileID: 4315714114064193288, guid: 78088798ef07b034297b107b8c2e902b,
     type: 3}
   deckOfCards: []
+--- !u!1 &786230832 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2844532057883282925, guid: 316ec89f195ed6f4b929246d795ebedc,
+    type: 3}
+  m_PrefabInstance: {fileID: 2264494897858187892}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &786230835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786230832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca88078819fc554ca475a6d7bc047ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _myCardHolder: {fileID: 0}
+  rightSide: 0
+  crIsRunning: 0
+--- !u!1 &800116478 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8840932095496429077, guid: 316ec89f195ed6f4b929246d795ebedc,
+    type: 3}
+  m_PrefabInstance: {fileID: 2264494897858187892}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &800116481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800116478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca88078819fc554ca475a6d7bc047ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _myCardHolder: {fileID: 0}
+  rightSide: 0
+  crIsRunning: 0
 --- !u!1 &823476828
 GameObject:
   m_ObjectHideFlags: 0
@@ -2155,7 +2197,7 @@ PrefabInstance:
     - target: {fileID: 4765275888583785004, guid: 316ec89f195ed6f4b929246d795ebedc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.5
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 4765275888583785004, guid: 316ec89f195ed6f4b929246d795ebedc,
         type: 3}
@@ -2352,6 +2394,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1856357651}
     m_Modifications:
+    - target: {fileID: 1350339739, guid: 316ec89f195ed6f4b929246d795ebedc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4765275888583785004, guid: 316ec89f195ed6f4b929246d795ebedc,
         type: 3}
       propertyPath: m_LocalPosition.x

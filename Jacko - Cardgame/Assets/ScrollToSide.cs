@@ -5,21 +5,49 @@ using UnityEngine;
 
 public class ScrollToSide : MonoBehaviour
 {
+    #region Values
     [SerializeField]
     private GameObject _myCardHolder;
     [SerializeField]
-    private bool rightSide, crIsRunning;
-    float tempValue;
+    private bool rightSide;
+    [SerializeField]
+    static float scrollValue;
+    public int minmaxValue;
 
-    IEnumerator cardsToMove;
-
+    #endregion
+    #region Properties
     public bool RightSide { get => rightSide; private set => rightSide = value; }
+    public float ScrollValue
+    {
+        get { return scrollValue; }
+        set
+        {
+            if (value <= (minmaxValue * -1))
+            {
+                scrollValue = (minmaxValue * -1);
+            }
+            else if (value >= minmaxValue)
+            {
+                scrollValue = minmaxValue;
+            }
+            else
+            {
+                scrollValue = value;
+            }
+        }
+    }
+
+    #endregion
+
+    private void Awake()
+    {
+        minmaxValue = 20;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        crIsRunning = false;
-        //cardsToMove = MoveCardsInHand();
+        ScrollValue = 0f;
 
         foreach (Transform t in transform.parent.parent.GetComponentsInChildren<Transform>())
         {
@@ -44,83 +72,48 @@ public class ScrollToSide : MonoBehaviour
     {
         if (RightSide)
         {
-            if (tempValue > 0)
-            //if (GetComponentInParent<CardScroller>().DistX > _myCardHolder.transform.position.x)
+            if (ScrollValue > (minmaxValue * -1))
             {
-                _myCardHolder.transform.position -= new Vector3(1f, 0) * Time.deltaTime;
-                tempValue -= 0.1f;
-                print(tempValue);
+                _myCardHolder.transform.position -= new Vector3(2f, 0) * Time.deltaTime;
+                ScrollValue -= 0.1f;
+                print(ScrollValue);
             }
         }
         else
         {
-            if (tempValue < 0)
+            if (ScrollValue < minmaxValue)
             {
-                _myCardHolder.transform.position += new Vector3(1f, 0) * Time.deltaTime;
-                tempValue += 0.1f;
-                print(tempValue);
+                _myCardHolder.transform.position += new Vector3(2f, 0) * Time.deltaTime;
+                ScrollValue += 0.1f;
+                print(ScrollValue);
             }
         }
-        //if (!crIsRunning)
-        //{
-        //    StartCoroutine(cardsToMove);
-        //}
     }
 
-    private void OnMouseEnter()
-    {
-        if (RightSide)
-        {
-            print("Right side is moving.");
-            tempValue = Math.Abs(_myCardHolder.transform.position.x);
-        }
-        else
-        {
-            print("Left side is moving.");
-            tempValue = _myCardHolder.transform.position.x;
-        }
-        print("Entered a scroll-area..: " + tempValue);
-        //StartCoroutine(cardsToMove);
-    }
-
-    private void OnMouseExit()
-    {
-        if (RightSide)
-        {
-            print("Right side has stopped.");
-        }
-        else
-        {
-            print("Left side has stopped.");
-        }
-        //StopCoroutine(cardsToMove);
-        //crIsRunning = false;
-    }
-
-    //IEnumerator MoveCardsInHand()
+    #region Debug with Mouse-Enter/-Exit
+    //private void OnMouseEnter()
     //{
-    //    crIsRunning = true;
-    //    //while (x > 0)
-    //    //{
     //    if (RightSide)
     //    {
-    //        while (distX > 0)
-    //        {
-    //            _myCardHolder.transform.position += new Vector3(0.01f, 0);
-    //            distX -= 0.01f;
-    //            yield return new WaitForSeconds(0.01f);
-    //        }
+    //        print("Right side is moving.");
     //    }
     //    else
     //    {
-    //        while (distX < 0)
-    //        {
-    //            _myCardHolder.transform.position -= new Vector3(0.01f, 0);
-    //            distX += 0.01f;
-    //            yield return new WaitForSeconds(0.01f);
-    //        }
+    //        print("Left side is moving.");
     //    }
-    //    //}
-    //    crIsRunning = false;
+    //    print("Entered a scroll-area..: " + TempValue);
     //}
+
+    //private void OnMouseExit()
+    //{
+    //    if (RightSide)
+    //    {
+    //        print("Right side has stopped.");
+    //    }
+    //    else
+    //    {
+    //        print("Left side has stopped.");
+    //    }
+    //}
+    #endregion
 }

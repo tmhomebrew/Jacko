@@ -24,6 +24,7 @@ public class BoardController : MonoBehaviour
     #region Fields
     [SerializeField]
     GameObject _cardZone, _deckZone, _discardZone;
+    [SerializeField]
     List<GameObject> _discardPileList, _playedCardPile;
 
     float _sortingVal;
@@ -49,20 +50,23 @@ public class BoardController : MonoBehaviour
 
         foreach (Transform go in GetComponentsInChildren<Transform>())
         {
-            if (go.tag.ToLower() == "cardzone")
+            if (go.parent == transform)
             {
-                CardZone = go.gameObject;
-                continue;
-            }
-            if (go.tag.ToLower() == "deckzone")
-            {
-                DeckZone = go.gameObject;
-                continue;
-            }
-            if (go.tag.ToLower() == "discardzone")
-            {
-                DiscardZone = go.gameObject;
-                continue;
+                if (go.tag.ToLower() == "cardzone")
+                {
+                    CardZone = go.gameObject;
+                    continue;
+                }
+                if (go.tag.ToLower() == "deckzone")
+                {
+                    DeckZone = go.gameObject;
+                    continue;
+                }
+                if (go.tag.ToLower() == "discardzone")
+                {
+                    DiscardZone = go.gameObject;
+                    continue;
+                }
             }
         }
     }

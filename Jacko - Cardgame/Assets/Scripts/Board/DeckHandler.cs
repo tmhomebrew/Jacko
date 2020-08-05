@@ -47,6 +47,7 @@ public class DeckHandler : MonoBehaviour
                 GameObject newCard = Instantiate(cardPrefab, this.transform);
                 newCard.transform.name = nameTemp;
                 newCard.GetComponent<CardEditor>().SetupCard(i, j);
+                newCard.GetComponent<CardEditor>().IsNotInPlay = false;
 
                 _listOfCards.Add(newCard);
             }
@@ -75,6 +76,7 @@ public class DeckHandler : MonoBehaviour
         {
             temp.GetComponent<PlayerHand>().AddCardToPlayer(DeckOfCards[i]);
             DeckOfCards[i].GetComponent<CardEditor>().IsDealt = true;
+            DeckOfCards[i].GetComponent<CardEditor>().IsNotInPlay = true;
 
             DeckOfCards[i].transform.rotation = Quaternion.Euler(0, 0, 0);
             DeckOfCards[i].transform.SetParent(temp.GetComponent<PlayerHand>().CardOnboardPlace.transform);

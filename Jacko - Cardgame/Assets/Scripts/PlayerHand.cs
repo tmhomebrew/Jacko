@@ -161,4 +161,13 @@ public class PlayerHand : MonoBehaviour
         _boardZone.GetComponent<BoardController>().CardFromHandToPlayedCardsPile(card);
         SortHand();
     }
+
+    private void OnMouseDown()
+    {
+        print("Im here");
+        if (PreSelectedCard != null)
+        {
+            DeSelectedCard();
+        }
+    }
 }

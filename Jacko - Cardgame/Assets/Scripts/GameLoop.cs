@@ -7,7 +7,11 @@ public class GameLoop : MonoBehaviour
     #region Variables
     GameObject playerZoneOne, playerZoneTwo;
     private bool _playerOneJoined, _playerTwoJoined, _playersJoined;
-    List<GameObject> _playersInGame;
+    List<GameObject> _playersInGame, _cardsPlayed, _cardsDiscarded;
+
+    [SerializeField]
+    GameObject myCardZone, myDiscardZone, myDeckZone, myPlayerZone;
+
     #endregion
 
     #region Properties
@@ -21,28 +25,55 @@ public class GameLoop : MonoBehaviour
     private void Awake()
     {
         _playersInGame = new List<GameObject>();
+        _cardsPlayed = new List<GameObject>();
+        _cardsDiscarded = new List<GameObject>();
+
+        SetupReferences();
     }
+
     // Start is called before the first frame update
     void Start()
     {
-        SetupReferences();
+
     }
 
     void SetupReferences()
     {
-        foreach (Transform go in GetComponentsInChildren<Transform>())
-        {
-            if (go.name.ToLower().Contains("playerzone"))
-            {
-                PlayerZoneOne = go.gameObject;
-                print(playerZoneOne);
-            }
-            if (go.name.ToLower().Contains("playerzonetwo"))
-            {
-                PlayerZoneTwo = go.gameObject;
-                print(playerZoneTwo);
-            }
-        }
+        //foreach (Transform t in GameObject.FindGameObjectWithTag("BoardZone").transform.GetComponentsInChildren<Transform>())
+        //{
+        //    if (t.parent == GameObject.FindGameObjectWithTag("BoardZone").transform)
+        //    {
+        //        if (t.tag.ToLower().Contains("cardzone") && myCardZone == null)
+        //        {
+        //            myCardZone = t.gameObject;
+        //        }
+        //        if (t.tag.ToLower().Contains("discardzone"))
+        //        {
+        //            myDiscardZone = t.gameObject;
+        //        }
+        //        if (t.tag.ToLower().Contains("deckzone"))
+        //        {
+        //            myDeckZone = t.gameObject;
+        //        }
+        //        if (t.name.ToLower().Contains("playerzones"))
+        //        {
+        //            myPlayerZone = t.gameObject;
+        //        }
+        //    }
+        //}
+        //foreach (Transform go in GetComponentsInChildren<Transform>())
+        //{
+        //    if (go.name.ToLower().Contains("playerzone"))
+        //    {
+        //        PlayerZoneOne = go.gameObject;
+        //        print(playerZoneOne);
+        //    }
+        //    if (go.name.ToLower().Contains("playerzonetwo"))
+        //    {
+        //        PlayerZoneTwo = go.gameObject;
+        //        print(playerZoneTwo);
+        //    }
+        //}
     }
 
     // Update is called once per frame
@@ -76,9 +107,9 @@ public class GameLoop : MonoBehaviour
     public void AssignPlayers()
     {
         if (_playersInGame.Count == 2)
-        {
-            _playersInGame[0].GetComponent<PlayerHand>().CardZone = playerZoneOne;
-            _playersInGame[1].GetComponent<PlayerHand>().CardZone = playerZoneTwo;
+        { 
+            playerZoneOne = _playersInGame[0].GetComponent<PlayerHand>().CardZone;
+            playerZoneTwo = _playersInGame[1].GetComponent<PlayerHand>().CardZone;
 
             //bool isAssigned = false;
             //foreach (GameObject p in _playersInGame)

@@ -8,6 +8,7 @@ TagManager:
   - DeckZone
   - DiscardZone
   - PlayerZone
+  - BoardZone
   layers:
   - Default
   - TransparentFX
